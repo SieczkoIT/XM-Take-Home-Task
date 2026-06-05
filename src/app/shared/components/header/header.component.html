@@ -1,1 +1,21 @@
-<p>header works!</p>
+<header class="header">
+  <nav class="header__nav">
+    <button
+      mat-stroked-button
+      class="header__btn"
+      routerLink="/"
+      routerLinkActive="header__btn--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Photos
+    </button>
+    <button
+      mat-stroked-button
+      class="header__btn"
+      routerLink="/favourites"
+      routerLinkActive="header__btn--active"
+    >
+      Favourites
+    </button>
+  </nav>
+</header>

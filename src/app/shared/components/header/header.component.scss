@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  background: var(--mat-sys-inverse-surface);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  &__nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    gap: 16px;
+  }
+
+  &__btn {
+    min-width: 120px;
+    border-radius: 10px;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+
+    --mat-button-outlined-label-text-color: var(--mat-sys-inverse-on-surface);
+    --mat-button-outlined-outline-color: var(--mat-sys-inverse-on-surface);
+
+    &:hover:not(.header__btn--active) {
+      background-color: color-mix(in srgb, var(--mat-sys-inverse-on-surface) 10%, transparent);
+      --mat-button-outlined-outline-color: var(--mat-sys-inverse-primary);
+    }
+
+    &.header__btn--active {
+      --mat-button-outlined-label-text-color: var(--mat-sys-inverse-surface);
+      --mat-button-outlined-outline-color: var(--mat-sys-inverse-primary);
+      background-color: var(--mat-sys-inverse-primary);
+    }
+  }
+}
