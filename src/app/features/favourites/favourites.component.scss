@@ -1,0 +1,34 @@
+.favourites {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 80px 16px;
+    color: var(--mat-sys-on-surface-variant);
+    text-align: center;
+  }
+
+  &__empty-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    opacity: 0.4;
+  }
+
+  &__empty-title {
+    margin: 0;
+    font: var(--mat-sys-headline-small);
+  }
+
+  &__empty-subtitle {
+    margin: 0;
+    font: var(--mat-sys-body-medium);
+    opacity: 0.7;
+  }
+}

@@ -16,7 +16,7 @@ class MockIntersectionObserver {
   }
 }
 
-const mockPhotos = [new Photo('1', 'https://picsum.photos/id/1/400/300'), new Photo('2', 'https://picsum.photos/id/2/400/300')];
+const mockPhotos = [new Photo('1'), new Photo('2')];
 
 describe('PhotosComponent', () => {
   let component: PhotosComponent;

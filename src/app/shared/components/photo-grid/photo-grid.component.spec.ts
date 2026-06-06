@@ -3,10 +3,7 @@ import { By } from '@angular/platform-browser';
 import { PhotoGridComponent } from './photo-grid.component';
 import { Photo } from '../../../core/models/photo';
 
-const mockPhotos = [
-  new Photo('1', 'https://picsum.photos/id/1/400/300'),
-  new Photo('2', 'https://picsum.photos/id/2/400/300'),
-];
+const mockPhotos = [new Photo('1'), new Photo('2')];
 
 describe('PhotoGridComponent', () => {
   let fixture: ComponentFixture<PhotoGridComponent>;
@@ -46,5 +43,12 @@ describe('PhotoGridComponent', () => {
 
     expect(cards[0].nativeElement.querySelector('.photo-card__badge')).toBeTruthy();
     expect(cards[1].nativeElement.querySelector('.photo-card__badge')).toBeNull();
+  });
+
+  it('should forward showOverlay=false to card', () => {
+    fixture.componentRef.setInput('showOverlay', false);
+    fixture.detectChanges();
+    const card = fixture.debugElement.query(By.css('app-photo-card'));
+    expect(card.nativeElement.querySelector('.photo-card__overlay')).toBeNull();
   });
 });

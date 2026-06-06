@@ -12,9 +12,11 @@
     </div>
   }
 
-  <div class="photo-card__overlay">
-    <mat-icon class="photo-card__overlay-icon">
-      {{ isFavourite() ? 'favorite' : 'favorite_border' }}
-    </mat-icon>
-  </div>
+  @if (showOverlay()) {
+    <div class="photo-card__overlay">
+      <mat-icon class="photo-card__overlay-icon">
+        {{ isFavourite() ? 'favorite' : 'favorite_border' }}
+      </mat-icon>
+    </div>
+  }
 </div>

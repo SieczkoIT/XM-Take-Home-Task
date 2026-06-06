@@ -13,5 +13,6 @@ import { PhotoCardComponent } from '../photo-card/photo-card.component';
 export class PhotoGridComponent {
   photos = input.required<Photo[]>();
   favouriteIds = input<Set<string>>(new Set());
+  showOverlay = input<boolean>(true);
   cardClicked = output<Photo>();
 }

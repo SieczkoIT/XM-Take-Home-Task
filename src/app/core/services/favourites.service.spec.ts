@@ -16,24 +16,24 @@ describe('FavouritesService', () => {
   });
 
   it('should add a photo and report it as favourite', () => {
-    service.add(new Photo('42', 'https://picsum.photos/id/42/400/300'));
+    service.add(new Photo('42'));
     expect(service.isFavourite('42')).toBe(true);
   });
 
   it('should not add duplicate IDs', () => {
-    service.add(new Photo('1', 'https://picsum.photos/id/1/400/300'));
-    service.add(new Photo('1', 'https://picsum.photos/id/1/400/300'));
+    service.add(new Photo('1'));
+    service.add(new Photo('1'));
     expect(service.favouriteIds().size).toBe(1);
   });
 
   it('should remove a photo', () => {
-    service.add(new Photo('7', 'https://picsum.photos/id/7/400/300'));
+    service.add(new Photo('7'));
     service.remove('7');
     expect(service.isFavourite('7')).toBe(false);
   });
 
   it('should persist IDs to localStorage', () => {
-    service.add(new Photo('5', 'https://picsum.photos/id/5/400/300'));
+    service.add(new Photo('5'));
     const stored = JSON.parse(localStorage.getItem('photo-favourites') ?? '[]');
     expect(stored).toContain('5');
   });

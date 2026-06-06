@@ -6,7 +6,6 @@ import { Photo } from '../models/photo';
 
 interface PicsumPhoto {
   id: string;
-  download_url: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -21,7 +20,7 @@ export class PhotoService {
       })
       .pipe(
         delay(this.randomDelay()),
-        map((items) => items.map((item) => new Photo(item.id, item.download_url))),
+        map((items) => items.map((item) => new Photo(item.id))),
       );
   }
 

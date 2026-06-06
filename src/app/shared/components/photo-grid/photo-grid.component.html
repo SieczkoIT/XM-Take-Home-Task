@@ -3,6 +3,7 @@
     <app-photo-card
       [photo]="photo"
       [isFavourite]="favouriteIds().has(photo.id)"
+      [showOverlay]="showOverlay()"
       (cardClicked)="cardClicked.emit($event)"
     />
   }
