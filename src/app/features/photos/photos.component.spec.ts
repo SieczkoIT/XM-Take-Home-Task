@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 
 import { PhotosComponent } from './photos.component';
 import { PhotoService } from '../../core/services/photo.service';
-import { FavouritesService } from '../../core/services/favourites.service';
+import { FavoritesService } from '../../core/services/favorites.service';
 import { Photo } from '../../core/models/photo';
 
 class MockIntersectionObserver {
@@ -65,18 +65,18 @@ describe('PhotosComponent', () => {
     expect(component.photos().length).toBe(4);
   });
 
-  it('should add photo to favourites when onAddToFavourites is called', () => {
+  it('should add photo to favorites when onAddToFavorites is called', () => {
     fixture.detectChanges();
-    component.onAddToFavourites(mockPhotos[0]);
-    expect(TestBed.inject(FavouritesService).isFavourite('1')).toBe(true);
+    component.onAddToFavorites(mockPhotos[0]);
+    expect(TestBed.inject(FavoritesService).isFavorite('1')).toBe(true);
   });
 
-  it('should reflect favourite state from service signal', () => {
+  it('should reflect favorite state from service signal', () => {
     fixture.detectChanges();
-    const svc = TestBed.inject(FavouritesService);
-    expect(component.favouriteIds().has('1')).toBe(false);
+    const svc = TestBed.inject(FavoritesService);
+    expect(component.favoriteIds().has('1')).toBe(false);
     svc.add(mockPhotos[0]);
-    expect(component.favouriteIds().has('1')).toBe(true);
+    expect(component.favoriteIds().has('1')).toBe(true);
   });
 
   it('should attach IntersectionObserver to the sentinel element', () => {

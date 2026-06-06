@@ -1,8 +1,8 @@
 <div class="photos page-wrapper">
   <app-photo-grid
     [photos]="photos()"
-    [favouriteIds]="favouriteIds()"
-    (cardClicked)="onAddToFavourites($event)"
+    [favoriteIds]="favoriteIds()"
+    (cardClicked)="onAddToFavorites($event)"
   />
 
   @if (isLoading()) {

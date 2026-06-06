@@ -1,0 +1,15 @@
+<div class="favorites page-wrapper">
+  @if (favoritePhotos().length === 0) {
+    <div class="favorites__empty">
+      <mat-icon class="favorites__empty-icon">favorite_border</mat-icon>
+      <h2 class="favorites__empty-title">No favorites yet</h2>
+      <p class="favorites__empty-subtitle">Go to Photos and click on an image to save it here.</p>
+    </div>
+  } @else {
+    <app-photo-grid
+      [photos]="favoritePhotos()"
+      [showOverlay]="false"
+      (cardClicked)="onPhotoClicked($event)"
+    />
+  }
+</div>

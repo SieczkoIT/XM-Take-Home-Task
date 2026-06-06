@@ -29,12 +29,12 @@ describe('PhotoCardComponent', () => {
     expect(img.alt).toBe('Photo 1');
   });
 
-  it('should not show favourite badge by default', () => {
+  it('should not show favorite badge by default', () => {
     expect(fixture.nativeElement.querySelector('.photo-card__badge')).toBeNull();
   });
 
-  it('should show favourite badge when isFavourite is true', () => {
-    fixture.componentRef.setInput('isFavourite', true);
+  it('should show favorite badge when isFavorite is true', () => {
+    fixture.componentRef.setInput('isFavorite', true);
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('.photo-card__badge')).toBeTruthy();
   });
@@ -49,13 +49,13 @@ describe('PhotoCardComponent', () => {
     expect(fixture.nativeElement.querySelector('.photo-card__overlay')).toBeNull();
   });
 
-  it('should show favorite_border icon in overlay when not a favourite', () => {
+  it('should show favorite_border icon in overlay when not a favorite', () => {
     const icon = fixture.nativeElement.querySelector('.photo-card__overlay-icon');
     expect(icon.textContent.trim()).toBe('favorite_border');
   });
 
-  it('should show favorite icon in overlay when isFavourite is true', () => {
-    fixture.componentRef.setInput('isFavourite', true);
+  it('should show favorite icon in overlay when isFavorite is true', () => {
+    fixture.componentRef.setInput('isFavorite', true);
     fixture.detectChanges();
     const icon = fixture.nativeElement.querySelector('.photo-card__overlay-icon');
     expect(icon.textContent.trim()).toBe('favorite');

@@ -41,12 +41,12 @@ describe('HeaderComponent', () => {
     expect(routerLink.urlTree?.toString()).toBe('/');
   });
 
-  it('should render a Favourites button linking to /favourites', () => {
+  it('should render a Favorites button linking to /favorites', () => {
     const buttons = fixture.debugElement.queryAll(By.css('.header__btn'));
-    const favouritesBtn = buttons[1];
-    const routerLink = favouritesBtn.injector.get(RouterLink);
-    expect(favouritesBtn.nativeElement.textContent.trim()).toBe('Favourites');
-    expect(routerLink.urlTree?.toString()).toBe('/favourites');
+    const favoritesBtn = buttons[1];
+    const routerLink = favoritesBtn.injector.get(RouterLink);
+    expect(favoritesBtn.nativeElement.textContent.trim()).toBe('Favorites');
+    expect(routerLink.urlTree?.toString()).toBe('/favorites');
   });
 
   it('should mark Photos button active on / route', async () => {
@@ -57,9 +57,9 @@ describe('HeaderComponent', () => {
     expect(photosBtn.nativeElement.classList).toContain('header__btn--active');
   });
 
-  it('should mark Favourites button active on /favourites route', async () => {
+  it('should mark Favorites button active on /favorites route', async () => {
     const router = TestBed.inject(Router);
-    await router.navigate(['/favourites']);
+    await router.navigate(['/favorites']);
     fixture.detectChanges();
     const buttons = fixture.debugElement.queryAll(By.css('.header__btn'));
     expect(buttons[1].nativeElement.classList).toContain('header__btn--active');

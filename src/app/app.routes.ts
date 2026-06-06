@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', loadComponent: () => import('./features/photos/photos.component').then(m => m.PhotosComponent) },
-  { path: 'favourites', loadComponent: () => import('./features/favourites/favourites.component').then(m => m.FavouritesComponent) },
+  { path: 'favorites', loadComponent: () => import('./features/favorites/favorites.component').then(m => m.FavoritesComponent) },
   { path: 'photos/:id', loadComponent: () => import('./features/photo-detail/photo-detail.component').then(m => m.PhotoDetailComponent) },
   { path: '**', redirectTo: '' }
 ];

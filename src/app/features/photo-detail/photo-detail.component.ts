@@ -4,7 +4,7 @@ import { MatButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { Photo } from '../../core/models/photo';
-import { FavouritesService } from '../../core/services/favourites.service';
+import { FavoritesService } from '../../core/services/favorites.service';
 
 @Component({
   selector: 'app-photo-detail',
@@ -17,13 +17,13 @@ import { FavouritesService } from '../../core/services/favourites.service';
 export class PhotoDetailComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  private readonly favouritesService = inject(FavouritesService);
+  private readonly favoritesService = inject(FavoritesService);
 
   readonly photo = new Photo(this.route.snapshot.paramMap.get('id') ?? '');
-  readonly isFavourite = computed(() => this.favouritesService.isFavourite(this.photo.id));
+  readonly isFavorite = computed(() => this.favoritesService.isFavorite(this.photo.id));
 
-  removeFromFavourites(): void {
-    this.favouritesService.remove(this.photo.id);
-    this.router.navigate(['/favourites']);
+  removeFromFavorites(): void {
+    this.favoritesService.remove(this.photo.id);
+    this.router.navigate(['/favorites']);
   }
 }

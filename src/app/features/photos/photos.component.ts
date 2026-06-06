@@ -11,7 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { Photo } from '../../core/models/photo';
 import { PhotoService } from '../../core/services/photo.service';
-import { FavouritesService } from '../../core/services/favourites.service';
+import { FavoritesService } from '../../core/services/favorites.service';
 import { PhotoGridComponent } from '../../shared/components/photo-grid/photo-grid.component';
 import { InfiniteScrollDirective } from '../../shared/directives/infinite-scroll.directive';
 
@@ -25,12 +25,12 @@ import { InfiniteScrollDirective } from '../../shared/directives/infinite-scroll
 })
 export class PhotosComponent implements OnInit {
   private readonly photoService = inject(PhotoService);
-  private readonly favouritesService = inject(FavouritesService);
+  private readonly favoritesService = inject(FavoritesService);
   private readonly destroyRef = inject(DestroyRef);
 
   readonly photos = signal<Photo[]>([]);
   readonly isLoading = signal(false);
-  readonly favouriteIds = this.favouritesService.favouriteIds;
+  readonly favoriteIds = this.favoritesService.favoriteIds;
 
   private currentPage = 1;
 
@@ -44,8 +44,8 @@ export class PhotosComponent implements OnInit {
     }
   }
 
-  onAddToFavourites(photo: Photo): void {
-    this.favouritesService.add(photo);
+  onAddToFavorites(photo: Photo): void {
+    this.favoritesService.add(photo);
   }
 
   private loadPhotos(): void {

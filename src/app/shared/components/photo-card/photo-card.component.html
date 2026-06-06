@@ -6,7 +6,7 @@
     loading="lazy"
   />
 
-  @if (isFavourite()) {
+  @if (isFavorite()) {
     <div class="photo-card__badge">
       <mat-icon>favorite</mat-icon>
     </div>
@@ -15,7 +15,7 @@
   @if (showOverlay()) {
     <div class="photo-card__overlay">
       <mat-icon class="photo-card__overlay-icon">
-        {{ isFavourite() ? 'favorite' : 'favorite_border' }}
+        {{ isFavorite() ? 'favorite' : 'favorite_border' }}
       </mat-icon>
     </div>
   }

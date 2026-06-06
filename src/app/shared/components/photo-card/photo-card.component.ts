@@ -12,7 +12,7 @@ import { Photo } from '../../../core/models/photo';
 })
 export class PhotoCardComponent {
   photo = input.required<Photo>();
-  isFavourite = input<boolean>(false);
+  isFavorite = input<boolean>(false);
   showOverlay = input<boolean>(true);
   cardClicked = output<Photo>();
 

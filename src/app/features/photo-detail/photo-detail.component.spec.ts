@@ -4,7 +4,7 @@ import { provideLocationMocks } from '@angular/common/testing';
 import { ActivatedRoute } from '@angular/router';
 
 import { PhotoDetailComponent } from './photo-detail.component';
-import { FavouritesService } from '../../core/services/favourites.service';
+import { FavoritesService } from '../../core/services/favorites.service';
 import { Photo } from '../../core/models/photo';
 import { routes } from '../../app.routes';
 
@@ -19,7 +19,7 @@ function createActivatedRouteStub(id: string) {
 describe('PhotoDetailComponent', () => {
   let component: PhotoDetailComponent;
   let fixture: ComponentFixture<PhotoDetailComponent>;
-  let favouritesService: FavouritesService;
+  let favoritesService: FavoritesService;
 
   beforeEach(async () => {
     localStorage.clear();
@@ -35,7 +35,7 @@ describe('PhotoDetailComponent', () => {
 
     fixture = TestBed.createComponent(PhotoDetailComponent);
     component = fixture.componentInstance;
-    favouritesService = TestBed.inject(FavouritesService);
+    favoritesService = TestBed.inject(FavoritesService);
     fixture.detectChanges();
   });
 
@@ -48,34 +48,34 @@ describe('PhotoDetailComponent', () => {
     expect(img.src).toBe(new Photo(PHOTO_ID).fullSizeUrl);
   });
 
-  it('should have the remove button disabled when photo is not a favourite', () => {
+  it('should have the remove button disabled when photo is not a favorite', () => {
     const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
     expect(button.disabled).toBe(true);
   });
 
-  it('should have the remove button enabled when photo is a favourite', () => {
-    favouritesService.add(new Photo(PHOTO_ID));
+  it('should have the remove button enabled when photo is a favorite', () => {
+    favoritesService.add(new Photo(PHOTO_ID));
     fixture.detectChanges();
     const button: HTMLButtonElement = fixture.nativeElement.querySelector('button');
     expect(button.disabled).toBe(false);
   });
 
-  it('should remove photo from favourites and navigate to /favourites on button click', () => {
-    favouritesService.add(new Photo(PHOTO_ID));
+  it('should remove photo from favorites and navigate to /favorites on button click', () => {
+    favoritesService.add(new Photo(PHOTO_ID));
     fixture.detectChanges();
 
     const router = TestBed.inject(Router);
     const navigateSpy = vi.spyOn(router, 'navigate');
 
-    component.removeFromFavourites();
+    component.removeFromFavorites();
 
-    expect(favouritesService.isFavourite(PHOTO_ID)).toBe(false);
-    expect(navigateSpy).toHaveBeenCalledWith(['/favourites']);
+    expect(favoritesService.isFavorite(PHOTO_ID)).toBe(false);
+    expect(navigateSpy).toHaveBeenCalledWith(['/favorites']);
   });
 
-  it('should reflect isFavourite reactively', () => {
-    expect(component.isFavourite()).toBe(false);
-    favouritesService.add(new Photo(PHOTO_ID));
-    expect(component.isFavourite()).toBe(true);
+  it('should reflect isFavorite reactively', () => {
+    expect(component.isFavorite()).toBe(false);
+    favoritesService.add(new Photo(PHOTO_ID));
+    expect(component.isFavorite()).toBe(true);
   });
 });

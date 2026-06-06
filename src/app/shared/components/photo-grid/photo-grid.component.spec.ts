@@ -36,8 +36,8 @@ describe('PhotoGridComponent', () => {
     expect(emitted).toEqual(mockPhotos[0]);
   });
 
-  it('should mark a photo as favourite when its id is in favouriteIds', () => {
-    fixture.componentRef.setInput('favouriteIds', new Set(['1']));
+  it('should mark a photo as favorite when its id is in favoriteIds', () => {
+    fixture.componentRef.setInput('favoriteIds', new Set(['1']));
     fixture.detectChanges();
     const cards = fixture.debugElement.queryAll(By.css('app-photo-card'));
 

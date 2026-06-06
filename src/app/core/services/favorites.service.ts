@@ -2,25 +2,25 @@ import { computed, Injectable, signal } from '@angular/core';
 import { Photo } from '../models/photo';
 
 @Injectable({ providedIn: 'root' })
-export class FavouritesService {
-  private readonly STORAGE_KEY = 'photo-favourites';
+export class FavoritesService {
+  private readonly STORAGE_KEY = 'photo-favorites';
 
   private readonly _ids = signal<Set<string>>(this.load());
-  readonly favouriteIds = this._ids.asReadonly();
-  readonly favouritePhotos = computed(() => [...this._ids()].map((id) => new Photo(id)));
+  readonly favoriteIds = this._ids.asReadonly();
+  readonly favoritePhotos = computed(() => [...this._ids()].map((id) => new Photo(id)));
 
-  isFavourite(id: string): boolean {
+  isFavorite(id: string): boolean {
     return this._ids().has(id);
   }
 
   add(photo: Photo): void {
-    if (this.isFavourite(photo.id)) return;
+    if (this.isFavorite(photo.id)) return;
     this._ids.update((s) => new Set([...s, photo.id]));
     this.persist();
   }
 
   remove(id: string): void {
-    if (!this.isFavourite(id)) return;
+    if (!this.isFavorite(id)) return;
     this._ids.update((s) => new Set([...s].filter((i) => i !== id)));
     this.persist();
   }
