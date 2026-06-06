@@ -1,13 +1,9 @@
 <div class="photos">
-  <div class="photos__grid">
-    @for (photo of photos(); track photo.id) {
-      <app-photo-card
-        [photo]="photo"
-        [isFavourite]="favouriteIds().has(photo.id)"
-        (cardClicked)="onAddToFavourites($event)"
-      />
-    }
-  </div>
+  <app-photo-grid
+    [photos]="photos()"
+    [favouriteIds]="favouriteIds()"
+    (cardClicked)="onAddToFavourites($event)"
+  />
 
   @if (isLoading()) {
     <div class="photos__loader">

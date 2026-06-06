@@ -12,13 +12,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Photo } from '../../core/models/photo';
 import { PhotoService } from '../../core/services/photo.service';
 import { FavouritesService } from '../../core/services/favourites.service';
-import { PhotoCardComponent } from '../../shared/components/photo-card/photo-card.component';
+import { PhotoGridComponent } from '../../shared/components/photo-grid/photo-grid.component';
 import { InfiniteScrollDirective } from '../../shared/directives/infinite-scroll.directive';
 
 @Component({
   selector: 'app-photos',
   standalone: true,
-  imports: [PhotoCardComponent, InfiniteScrollDirective, MatProgressSpinnerModule],
+  imports: [PhotoGridComponent, InfiniteScrollDirective, MatProgressSpinnerModule],
   templateUrl: './photos.component.html',
   styleUrl: './photos.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,3 +1,9 @@
-<p>
-  photo-grid works!
-</p>
+<div class="photo-grid">
+  @for (photo of photos(); track photo.id) {
+    <app-photo-card
+      [photo]="photo"
+      [isFavourite]="favouriteIds().has(photo.id)"
+      (cardClicked)="cardClicked.emit($event)"
+    />
+  }
+</div>

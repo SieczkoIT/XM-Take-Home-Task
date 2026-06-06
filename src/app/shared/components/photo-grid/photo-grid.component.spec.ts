@@ -1,9 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { PhotoGridComponent } from './photo-grid.component';
+import { Photo } from '../../../core/models/photo';
+
+const mockPhotos = [
+  new Photo('1', 'https://picsum.photos/id/1/400/300'),
+  new Photo('2', 'https://picsum.photos/id/2/400/300'),
+];
 
 describe('PhotoGridComponent', () => {
-  let component: PhotoGridComponent;
   let fixture: ComponentFixture<PhotoGridComponent>;
+  let component: PhotoGridComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -11,11 +18,33 @@ describe('PhotoGridComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(PhotoGridComponent);
+    fixture.componentRef.setInput('photos', mockPhotos);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render a card for each photo', () => {
+    const cards = fixture.debugElement.queryAll(By.css('app-photo-card'));
+    expect(cards.length).toBe(2);
+  });
+
+  it('should emit cardClicked when a card is clicked', () => {
+    let emitted: Photo | undefined;
+    component.cardClicked.subscribe((p: Photo) => (emitted = p));
+    fixture.debugElement.query(By.css('.photo-card')).nativeElement.click();
+    expect(emitted).toEqual(mockPhotos[0]);
+  });
+
+  it('should mark a photo as favourite when its id is in favouriteIds', () => {
+    fixture.componentRef.setInput('favouriteIds', new Set(['1']));
+    fixture.detectChanges();
+    const cards = fixture.debugElement.queryAll(By.css('app-photo-card'));
+
+    expect(cards[0].nativeElement.querySelector('.photo-card__badge')).toBeTruthy();
+    expect(cards[1].nativeElement.querySelector('.photo-card__badge')).toBeNull();
   });
 });

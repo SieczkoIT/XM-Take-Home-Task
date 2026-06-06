@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { Photo } from '../../../core/models/photo';
+import { PhotoCardComponent } from '../photo-card/photo-card.component';
 
 @Component({
   selector: 'app-photo-grid',
+  standalone: true,
+  imports: [PhotoCardComponent],
   templateUrl: './photo-grid.component.html',
   styleUrl: './photo-grid.component.scss',
-  standalone: true,
-  imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhotoGridComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
+export class PhotoGridComponent {
+  photos = input.required<Photo[]>();
+  favouriteIds = input<Set<string>>(new Set());
+  cardClicked = output<Photo>();
 }
