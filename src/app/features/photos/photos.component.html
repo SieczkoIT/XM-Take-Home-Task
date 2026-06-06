@@ -11,5 +11,13 @@
     </div>
   }
 
+  @if (hasError()) {
+    <div class="photos__error">
+      <mat-icon class="photos__error-icon">wifi_off</mat-icon>
+      <p class="photos__error-text">Failed to load photos</p>
+      <button mat-stroked-button (click)="retry()">Try again</button>
+    </div>
+  }
+
   <div class="photos__sentinel" appInfiniteScroll (scrolled)="onScrolled()"></div>
 </div>

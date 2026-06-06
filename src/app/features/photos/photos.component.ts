@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButton } from '@angular/material/button';
 
 import { Photo } from '../../core/models/photo';
 import { PhotoService } from '../../core/services/photo.service';
@@ -18,7 +20,7 @@ import { InfiniteScrollDirective } from '../../shared/directives/infinite-scroll
 @Component({
   selector: 'app-photos',
   standalone: true,
-  imports: [PhotoGridComponent, InfiniteScrollDirective, MatProgressSpinnerModule],
+  imports: [PhotoGridComponent, InfiniteScrollDirective, MatProgressSpinnerModule, MatIconModule, MatButton],
   templateUrl: './photos.component.html',
   styleUrl: './photos.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,6 +32,7 @@ export class PhotosComponent implements OnInit {
 
   readonly photos = signal<Photo[]>([]);
   readonly isLoading = signal(false);
+  readonly hasError = signal(false);
   readonly favoriteIds = this.favoritesService.favoriteIds;
 
   private currentPage = 1;
@@ -42,6 +45,11 @@ export class PhotosComponent implements OnInit {
     if (!this.isLoading()) {
       this.loadPhotos();
     }
+  }
+
+  retry(): void {
+    this.hasError.set(false);
+    this.loadPhotos();
   }
 
   onAddToFavorites(photo: Photo): void {
@@ -62,6 +70,7 @@ export class PhotosComponent implements OnInit {
         },
         error: () => {
           this.isLoading.set(false);
+          this.hasError.set(true);
         },
       });
   }

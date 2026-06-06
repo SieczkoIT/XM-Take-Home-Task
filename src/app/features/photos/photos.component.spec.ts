@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 import { PhotosComponent } from './photos.component';
 import { PhotoService } from '../../core/services/photo.service';
@@ -82,5 +82,38 @@ describe('PhotosComponent', () => {
   it('should attach IntersectionObserver to the sentinel element', () => {
     fixture.detectChanges();
     expect(MockIntersectionObserver.instances[0].observe).toHaveBeenCalled();
+  });
+
+  describe('error state', () => {
+    beforeEach(() => {
+      photoServiceSpy.getPhotos.mockReturnValue(throwError(() => new Error('Network error')));
+    });
+
+    it('should set hasError to true when request fails', () => {
+      fixture.detectChanges();
+      expect(component.hasError()).toBe(true);
+    });
+
+    it('should set isLoading to false when request fails', () => {
+      fixture.detectChanges();
+      expect(component.isLoading()).toBe(false);
+    });
+
+    it('should show error UI when hasError is true', () => {
+      fixture.detectChanges();
+      const errorEl = fixture.nativeElement.querySelector('.photos__error');
+      expect(errorEl).toBeTruthy();
+    });
+
+    it('should retry and clear error on retry()', () => {
+      fixture.detectChanges();
+
+      photoServiceSpy.getPhotos.mockReturnValue(of(mockPhotos));
+      component.retry();
+      fixture.detectChanges();
+
+      expect(component.hasError()).toBe(false);
+      expect(component.photos()).toEqual(mockPhotos);
+    });
   });
 });

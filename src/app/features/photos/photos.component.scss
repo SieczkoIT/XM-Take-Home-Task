@@ -5,6 +5,31 @@
     padding: 32px 0;
   }
 
+  &__error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 32px 0;
+    color: var(--mat-sys-error);
+    text-align: center;
+
+    button {
+      --mat-button-outlined-container-shape: 10px;
+    }
+  }
+
+  &__error-icon {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+  }
+
+  &__error-text {
+    margin: 0;
+    font: var(--mat-sys-body-medium);
+  }
+
   &__sentinel {
     height: 1px;
   }
