@@ -1,3 +1,20 @@
-<p>
-  photo-card works!
-</p>
+<div class="photo-card" (click)="onClick()">
+  <img
+    class="photo-card__image"
+    [src]="photo().thumbnailUrl"
+    [alt]="'Photo ' + photo().id"
+    loading="lazy"
+  />
+
+  @if (isFavourite()) {
+    <div class="photo-card__badge">
+      <mat-icon>favorite</mat-icon>
+    </div>
+  }
+
+  <div class="photo-card__overlay">
+    <mat-icon class="photo-card__overlay-icon">
+      {{ isFavourite() ? 'favorite' : 'favorite_border' }}
+    </mat-icon>
+  </div>
+</div>

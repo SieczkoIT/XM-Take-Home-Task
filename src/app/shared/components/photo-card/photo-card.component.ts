@@ -1,14 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { Photo } from '../../../core/models/photo';
 
 @Component({
   selector: 'app-photo-card',
+  standalone: true,
+  imports: [MatIconModule],
   templateUrl: './photo-card.component.html',
   styleUrl: './photo-card.component.scss',
-  standalone: true,
-  imports: [],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PhotoCardComponent implements OnInit {
-  constructor() {}
+export class PhotoCardComponent {
+  photo = input.required<Photo>();
+  isFavourite = input<boolean>(false);
+  cardClicked = output<Photo>();
 
-  ngOnInit() {}
+  onClick(): void {
+    this.cardClicked.emit(this.photo());
+  }
 }
