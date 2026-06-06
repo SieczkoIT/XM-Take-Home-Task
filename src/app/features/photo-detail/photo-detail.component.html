@@ -1,3 +1,12 @@
-<p>
-  photo-detail works!
-</p>
+<div class="photo-detail page-wrapper">
+  <div class="photo-detail__image-wrapper">
+    <img class="photo-detail__image" [src]="photo.fullSizeUrl" [alt]="'Photo ' + photo.id" />
+  </div>
+
+  <div class="photo-detail__actions">
+    <button mat-stroked-button [disabled]="!isFavourite()" (click)="removeFromFavourites()">
+      <mat-icon>favorite</mat-icon>
+      Remove from favourites
+    </button>
+  </div>
+</div>

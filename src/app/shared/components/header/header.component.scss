@@ -17,7 +17,7 @@
 
   &__btn {
     min-width: 120px;
-    border-radius: 10px;
+    --mat-button-outlined-container-shape: 10px;
     transition:
       background-color 0.2s ease,
       border-color 0.2s ease;

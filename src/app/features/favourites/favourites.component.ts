@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { PhotoGridComponent } from '../../shared/components/photo-grid/photo-grid.component';
@@ -11,6 +11,7 @@ import { Photo } from '../../core/models/photo';
   styleUrl: './favourites.component.scss',
   standalone: true,
   imports: [PhotoGridComponent, MatIconModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FavouritesComponent {
   private readonly favouritesService = inject(FavouritesService);
